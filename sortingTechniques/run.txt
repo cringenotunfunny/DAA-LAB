@@ -1,0 +1,6 @@
+To run the file: use the name of the required sorting algo instead of bubbleSort.c
+
+eg:
+
+gcc sortFuncUtils.c bubbleSort.c -o sortProg
+./sortProg
