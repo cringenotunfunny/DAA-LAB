@@ -1,7 +1,8 @@
 #include<stdio.h>
 
-int merge(int arr[], int low, int mid, int high){
-    int temp[high - low];
+void merge(int arr[], int low, int mid, int high){
+    int arrlen = high - low + 1;
+    int temp[arrlen];
     int i = 0;
     int left = low;
     int right = mid + 1;
@@ -23,15 +24,12 @@ int merge(int arr[], int low, int mid, int high){
         left++;
     }
     while(right <= high){
-        temp[i] = arr[high];
+        temp[i] = arr[right];
         i++;
         right++;
     }
-    for(int i = low; i < high; i++){
-        arr[i] = temp[i - low];
-    }
-    for(int i = low; i < high; i++){
-        printf("%d ", arr[i]);
+    for(int i = 0; i < arrlen; i++){
+        arr[low + i] = temp[i];
     }
 }
 
@@ -46,10 +44,17 @@ void mergeSort(int arr[], int low, int high){
 int main(){
 
     int low, high, size;
-    printf("Enter the lowerbound index, upperbound index and the size of the array : ");
-    scanf("%d %d %d", &low, &high, &size);
+    printf("Enter the size of the array : ");
+    scanf("%d", &size);
     int arr[size];
 
+    printf("\nEnter the lowerbound index and upperbound index : ");
+    scanf("%d %d", &low, &high);
+
+    if(low < 0 || high >= size || low > high){
+        printf("Invalid indices\n");
+        return 1;
+    }
 
     printf("\nEnter the numbers into the array : ");
     for (int i = 0; i < size; i++){
@@ -63,5 +68,12 @@ int main(){
 
     mergeSort(arr, low, high);
 
+    printf("\nThe sorted array is : ");
+    for (int i = 0; i < size; i++){
+        printf("%d ", arr[i]);
+    }
+
+    printf("\n");
+    
     return 0;
 }
