@@ -2,26 +2,16 @@
 #include <stdlib.h>
 #include <time.h>
 
-void swap(int *xp, int *yp)
-{
-    int temp = *xp;
-    *xp = *yp;
-    *yp = temp;
-}
 
-void selectionSort(int arr[], int n)
-{
-    int i, j, min_idx;
-
-    for (i = 0; i < n-1; i++)
-    {
-        min_idx = i;
-        for (j = i+1; j < n; j++)
-          if (arr[j] < arr[min_idx])
-            min_idx = j;
-
-           if(min_idx != i)
-            swap(&arr[min_idx], &arr[i]);
+int selectionSort(int arr[], int range){
+    for (int i = 0; i <= range - 2; i++){
+        int minimum = i;
+        for (int j = i; j <= range; j++){
+            if (arr[j] < arr[minimum]) minimum = j;
+        }
+    int temp = arr[minimum];
+    arr[minimum] = arr[i];
+    arr[i] = temp;
     }
 }
 
